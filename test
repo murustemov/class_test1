@@ -1,11 +1,101 @@
+echo "Date $(date +%D.%M.%Y)"
+
+#This file below checks if the jump file created
+if [ -f /mnt/jump ]
+then
+        echo "<h5>1 , Jump file is created </h5>" >> /var/www/html/index.html 2> /dev/null
+else
+        echo "<h5>2 , Jump file is not created</h5>" >> /var/www/html/index.html 2> /dev/null
+fi
+#!/bin/bash
+#--------------------------------------
+#This line below checks if the file "file1.txt" created
+if [ -f /tmp/file1.txt ] 2> /dev/null
+then
+        echo "<h5>1 , The file is created </h5>" >> /var/www/html/index.html 2> /dev/null
+else
+        echo "<h5>0 , The file is not created</h5>" >>  /var/www/html/index.html 2> /dev/null
+fi
+
+
+#-------------------------------------------
+#This line below checks for hidden file
+if [ -f /tmp/.hidden.txt ] 2> /dev/null
+then
+        echo "<h5>1 , The hidden file is created </h5>" >>  /var/www/html/index.html 2> /dev/null
+else
+        echo "<h5>0 , The hidden file is not created</h5>" >> /var/www/html/index.html 2> /dev/null
+fi
+
+#--------------------------------------------
+#This line below checks for directory
+if [ -d /tmp/docs ]  2> /dev/null
+then
+        echo "<h5>1 , The directory is created</h5>" >> /var/www/html/index.html 2> /dev/null
+else
+        echo "<h5>2 , The directory is not created</h5>"  >> /var/www/html/index.html 2> /dev/null
+fi
+
+#----------------------------------------------
+#This line below checks for top ten lines
+if  [ $(wc -l /tmp/saved.top |awk '{ print$1 }') == "10" ]
+then
+        echo "<h5>1 , The top file is created</h5>" >> /var/www/html/index.html 2> /dev/null
+else
+        echo "<h5>2 , The top file is not created</h5>" >> /var/www/html/index.html 2> /dev/null
+fi
+
+#---------------------------------------------------
+#This line below checks for bottom lines.
+FILE=/tmp/saved.bottom
+if [ -f /root/saved.bottom ] && [ $(wc -l $FILE | awk '{print $1}') == "10" ] 2> /dev/null
+then
+        echo "<h5>1 , The bottom file is created</h5>" >> /var/www/html/index.html 2> /dev/null
+else
+        echo "<h5>2 , The bottom file is not created</h5>" >> /var/www/html/index.html 2> /dev/null
+fi
+
+#---------------------------------------------------
+#This line below cheated copy of users.txt
+if [ -f /tmp/users.txt ] 2> /dev/null
+then
+        echo "<h5>1 , The users files created</h5>" >> /var/www/html/index.html 2> /dev/null
+else
+        echo "<h5>2 , The users files is not created</h5>" >> /var/www/html/index.html 2> /dev/null
+fi
+
+##------------------------------------------------------
+#This line below checks for /university/faculty/class folder
+if [ -d /university ] && [ -d /university/faculty ] && [ /university/faculty/class ] 2> /dev/null
+then
+        echo "<h5>1 , The child folders are created</h5>" >> /var/www/html/index.html 2> /dev/null
+else
+        echo "<h5>2 , The child folders are not created</h5>" >> /var/www/html/index.html 2>/dev/null
+fi
+
+#---------------------------------------------------------
+#This line below checks for numbered lines
+if [ $(cat -n /tmp/saved.top 2> /dev/null  | awk '{print $1}' | wc -l ) == "10"  ] 2> /dev/null
+then
+        echo "<h5>1 , The lines are numbered</h5>" >> /var/www/html/index.html 2>/dev/null
+
+else
+        echo "<h5>2 , The lines are not numbered</h5>" >> /var/www/html/index.html 2>/dev/null
+fi
+
+#This line below checks for if saved.bottom is copied to another folder
+if [  -f /media/saved.bottom ]
+then
+        echo "<h5>1 , Saved.bottom file is moved</h5>" >> /var/www/html/index.html 2>/dev/null
+else
+        echo "<h5>2 , Saved.bottom file is not moved</h5>" >> /var/www/html/index.html 2> /dev/null
+fi
+
 #-----------------------------------------------------------
 #This file below checks if the jump file created
 if [ -f /mnt/jump ]
 then
-        echo "1 , Jump file is created " >> /var/www/html/index.html 2> /dev/null
+        echo "<h5>1 , Jump file is created </h5>" >> /var/www/html/index.html 2> /dev/null
 else
-        echo "2 , Jump file is not created" >> /var/www/html/index.html 2> /dev/null
+        echo "<h5>2 , Jump file is not created </h5>" >> /var/www/html/index.html 2> /dev/null
 fi
-
-echo "1" >> /var/www/html/index.html
-© 2017 GitHub, Inc.
